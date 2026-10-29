@@ -1,24 +1,219 @@
-import SectionLabel from '../components/SectionLabel.jsx';
-import '../styles/game.css';
+import SectionLabel from "../components/SectionLabel.jsx";
+import "../styles/game.css";
 
-export default function GamePage({ mode, level, levelInfo, question, index, deckLength, seconds, score, streak, bestStreak, answer, setAnswer, feedback, checking, hintOpen, setHintOpen, error, onSubmit, onBack }) {
-  const timed = mode === 'timed';
-  const builder = mode === 'build';
-  const progress = timed ? (60 - seconds) / 60 * 100 : index / deckLength * 100;
+export default function GamePage({
+  mode,
+  level,
+  levelInfo,
+  question,
+  index,
+  deckLength,
+  seconds,
+  score,
+  streak,
+  bestStreak,
+  answer,
+  setAnswer,
+  feedback,
+  checking,
+  hintOpen,
+  setHintOpen,
+  error,
+  onSubmit,
+  onBack,
+}) {
+  const timed = mode === "timed";
+  const builder = mode === "build";
+  const progress = timed
+    ? ((60 - seconds) / 60) * 100
+    : (index / deckLength) * 100;
   return (
     <section className="game-screen page-enter">
-      <div className="game-nav"><button className="back-link" onClick={onBack}>← Back to adventures</button><span className="game-nav-label">{builder ? 'Equation builder' : timed ? 'Beat the clock' : 'Solve & learn'} / {levelInfo.title}</span></div>
-      <div className="game-intro"><div><SectionLabel>{timed ? 'YOUR 60-SECOND CHALLENGE' : 'YOU’RE DOING GREAT ALREADY'}</SectionLabel><h1>{timed ? 'Ready, set, solve!' : builder ? 'Make the numbers work.' : 'One step at a time.'}</h1><p>{timed ? 'Every second counts. Trust your instincts.' : builder ? 'Use your keyboard to make an expression equal the target.' : 'Take your time. The aha moment is worth it.'}</p></div><div className={`round-time ${timed && seconds <= 10 ? 'time-low' : ''}`}><span>◷</span><div><strong>{timed ? `0:${String(seconds).padStart(2, '0')}` : 'No timer'}</strong><small>{timed ? 'TIME LEFT' : 'YOUR OWN PACE'}</small></div></div></div>
-      <div className="progress-labels"><span>{timed ? 'TIME ELAPSED' : 'ROUND PROGRESS'}</span><span>{timed ? `${60 - seconds} / 60 SEC` : `${Math.min(index, deckLength)} / ${deckLength} COMPLETED`}</span></div><div className="progress-track"><span style={{ width: `${progress}%` }} /></div>
-      <div className="play-layout"><div className="play-main">
-        <section className={`question-board ${feedback ? `board-${feedback}` : ''}`}><div className="board-top"><span className="board-question-id">QUESTION {String(index + 1).padStart(2, '0')}{!timed ? ` / ${String(deckLength).padStart(2, '0')}` : ''}</span><span className="board-status">✳ You’ve got this!</span></div>
-          <div className="board-center"><small className="prompt-kicker">{builder ? 'BUILD AN EXPRESSION THAT EQUALS' : question.variable ? 'SOLVE FOR X' : 'WHAT IS THE ANSWER?'}</small><div className="question-text">{builder ? question.answer : question.prompt}</div><form className="answer-form" onSubmit={onSubmit}><label className="answer-label" htmlFor="math-answer">{builder ? 'YOUR EXPRESSION' : 'YOUR ANSWER'}</label><div className="answer-control"><input id="math-answer" value={answer} onChange={(event) => setAnswer(event.target.value)} disabled={Boolean(feedback) || checking} autoComplete="off" inputMode={builder ? 'text' : 'decimal'} placeholder={builder ? 'e.g. 8 × 4' : 'Type your answer here'} /><button type="submit" className="answer-submit" disabled={!answer.trim() || checking || Boolean(feedback)}>{checking ? 'Checking…' : 'Check answer'} <span>→</span></button></div></form>
-            <div className={`answer-feedback ${feedback ? `feedback-${feedback}` : ''}`} role="status" aria-live="polite">{feedback === 'correct' ? '✓ Yes! That’s exactly right. On to the next one!' : feedback === 'incorrect' ? '× Not this time — and that’s okay. Keep going!' : error || 'Press Enter or tap “Check answer” when you’re ready.'}</div>
-          </div><div className="board-footer"><span>⌨ Keyboard friendly</span>{!builder && <button className="hint-trigger" onClick={() => setHintOpen((value) => !value)}>{hintOpen ? 'Hide hint' : 'Need a hint?'}</button>}</div>{hintOpen && question.hint && <div className="hint-box"><span>☼</span><p>{question.hint}</p></div>}
-        </section>
-        {builder && <section className="builder-panel"><div className="builder-panel-header"><div><small className="builder-eyebrow">THE TOOLKIT</small><h2>Make your equation</h2></div><button className="clear-button" onClick={() => setAnswer('')}>Clear</button></div><p className="builder-helper">Type an expression using +, −, ×, ÷, brackets, or powers.</p></section>}
+      <div className="game-nav">
+        <button className="back-link" onClick={onBack}>
+          ← Back to adventures
+        </button>
+        <span className="game-nav-label">
+          {builder
+            ? "Equation builder"
+            : timed
+              ? "Beat the clock"
+              : "Solve & learn"}{" "}
+          / {levelInfo.title}
+        </span>
       </div>
-      <aside className="round-sidebar"><div className="sidebar-eyebrow">YOUR LITTLE SCOREBOARD <span>✳</span></div><div className="stat-feature"><div className="stat-icon stat-icon-purple">★</div><div><strong>{score}</strong><span>POINTS EARNED</span></div></div><div className="stat-feature"><div className="stat-icon stat-icon-orange">✦</div><div><strong>{streak}</strong><span>CURRENT STREAK</span></div></div><div className="mini-stat-divider" /><div className="mini-stat-row"><span>Longest streak</span><strong>{bestStreak}</strong></div><div className="mini-stat-row"><span>Difficulty</span><strong>{levelInfo.title}</strong></div><div className="sidebar-note"><strong>Little by little is still progress.</strong><p>Focus on the next question. That’s all you need to do.</p></div></aside></div>
+      <div className="game-intro">
+        <div>
+          <SectionLabel>
+            {timed ? "YOUR 60-SECOND CHALLENGE" : "YOU’RE DOING GREAT ALREADY"}
+          </SectionLabel>
+          <h1>
+            {timed
+              ? "Ready, set, solve!"
+              : builder
+                ? "Make the numbers work."
+                : "One step at a time."}
+          </h1>
+          <p>
+            {timed
+              ? "Every second counts. Trust your instincts."
+              : builder
+                ? "Use your keyboard to make an expression equal the target."
+                : "Take your time. The aha moment is worth it."}
+          </p>
+        </div>
+        <div
+          className={`round-time ${timed && seconds <= 10 ? "time-low" : ""}`}
+        >
+          <span>◷</span>
+          <div>
+            <strong>
+              {timed ? `0:${String(seconds).padStart(2, "0")}` : "No timer"}
+            </strong>
+            <small>{timed ? "TIME LEFT" : "YOUR OWN PACE"}</small>
+          </div>
+        </div>
+      </div>
+      <div className="progress-labels">
+        <span>{timed ? "TIME ELAPSED" : "ROUND PROGRESS"}</span>
+        <span>
+          {timed
+            ? `${60 - seconds} / 60 SEC`
+            : `${Math.min(index, deckLength)} / ${deckLength} COMPLETED`}
+        </span>
+      </div>
+      <div className="progress-track">
+        <span style={{ width: `${progress}%` }} />
+      </div>
+      <div className="play-layout">
+        <div className="play-main">
+          <section
+            className={`question-board ${feedback ? `board-${feedback}` : ""}`}
+          >
+            <div className="board-top">
+              <span className="board-question-id">
+                QUESTION {String(index + 1).padStart(2, "0")}
+                {!timed ? ` / ${String(deckLength).padStart(2, "0")}` : ""}
+              </span>
+              <span className="board-status">✳ You’ve got this!</span>
+            </div>
+            <div className="board-center">
+              <small className="prompt-kicker">
+                {builder
+                  ? "BUILD AN EXPRESSION THAT EQUALS"
+                  : question.variable
+                    ? "SOLVE FOR X"
+                    : "WHAT IS THE ANSWER?"}
+              </small>
+              <div className="question-text">
+                {builder ? question.answer : question.prompt}
+              </div>
+              <form className="answer-form" onSubmit={onSubmit}>
+                <label className="answer-label" htmlFor="math-answer">
+                  {builder ? "YOUR EXPRESSION" : "YOUR ANSWER"}
+                </label>
+                <div className="answer-control">
+                  <input
+                    id="math-answer"
+                    value={answer}
+                    onChange={(event) => setAnswer(event.target.value)}
+                    disabled={Boolean(feedback) || checking}
+                    autoComplete="off"
+                    inputMode={builder ? "text" : "decimal"}
+                    placeholder={
+                      builder ? "e.g. 8 × 4" : "Type your answer here"
+                    }
+                  />
+                  <button
+                    type="submit"
+                    className="answer-submit"
+                    disabled={!answer.trim() || checking || Boolean(feedback)}
+                  >
+                    {checking ? "Checking…" : "Check answer"} <span>→</span>
+                  </button>
+                </div>
+              </form>
+              <div
+                className={`answer-feedback ${feedback ? `feedback-${feedback}` : ""}`}
+                role="status"
+                aria-live="polite"
+              >
+                {feedback === "correct"
+                  ? "✓ Yes! That’s exactly right. On to the next one!"
+                  : feedback === "incorrect"
+                    ? "× Not this time — and that’s okay. Keep going!"
+                    : error ||
+                      "Press Enter or tap “Check answer” when you’re ready."}
+              </div>
+            </div>
+            <div className="board-footer">
+              <span>⌨ Keyboard friendly</span>
+              {!builder && (
+                <button
+                  className="hint-trigger"
+                  onClick={() => setHintOpen((value) => !value)}
+                >
+                  {hintOpen ? "Hide hint" : "Need a hint?"}
+                </button>
+              )}
+            </div>
+            {hintOpen && question.hint && (
+              <div className="hint-box">
+                <span>☼</span>
+                <p>{question.hint}</p>
+              </div>
+            )}
+          </section>
+          {builder && (
+            <section className="builder-panel">
+              <div className="builder-panel-header">
+                <div>
+                  <small className="builder-eyebrow">THE TOOLKIT</small>
+                  <h2>Make your equation</h2>
+                </div>
+                <button className="clear-button" onClick={() => setAnswer("")}>
+                  Clear
+                </button>
+              </div>
+              <p className="builder-helper">
+                Type an expression using +, −, ×, ÷, brackets, or powers.
+              </p>
+            </section>
+          )}
+        </div>
+        <aside className="round-sidebar">
+          <div className="sidebar-eyebrow">
+            YOUR LITTLE SCOREBOARD <span>✳</span>
+          </div>
+          <div className="stat-feature">
+            <div className="stat-icon stat-icon-purple">★</div>
+            <div>
+              <strong>{score}</strong>
+              <span>POINTS EARNED</span>
+            </div>
+          </div>
+          <div className="stat-feature">
+            <div className="stat-icon stat-icon-orange">✦</div>
+            <div>
+              <strong>{streak}</strong>
+              <span>CURRENT STREAK</span>
+            </div>
+          </div>
+          <div className="mini-stat-divider" />
+          <div className="mini-stat-row">
+            <span>Longest streak</span>
+            <strong>{bestStreak}</strong>
+          </div>
+          <div className="mini-stat-row">
+            <span>Difficulty</span>
+            <strong>{levelInfo.title}</strong>
+          </div>
+          <div className="sidebar-note">
+            <strong>Little by little is still progress.</strong>
+            <p>Focus on the next question. That’s all you need to do.</p>
+          </div>
+        </aside>
+      </div>
     </section>
   );
 }

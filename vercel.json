@@ -1,0 +1,14 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "services": {
+    "equationist-api": {
+      "root": "Equationist-api",
+      "framework": "express"
+    },
+    "equationist-web": {
+      "root": "Equationist-web",
+      "framework": "vite"
+    }
+  },
+  "rewrites": []
+}

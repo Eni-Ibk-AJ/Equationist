@@ -1,8 +1,357 @@
-.admin-page { padding: 28px 0 42px; }.admin-heading { display: flex; align-items: flex-end; justify-content: space-between; padding: 2px 0 19px; border-bottom: 1px solid #e9e7e3; }.admin-heading .auth-back { display: block; margin: 0 0 22px; padding: 0; border: 0; background: none; color: #756ca0; font-size: 10px; font-weight: 800; }.admin-heading h1 { margin: 10px 0 5px; color: #2d2b42; font: 700 clamp(33px,4vw,45px)/1.04 var(--display); letter-spacing: -.065em; }.admin-heading p { margin: 0; color: #8e8b98; font-size: 10px; }.admin-heading-mark { width: 70px; height: 70px; display: grid; place-items: center; border-radius: 22px; background: #eeeaff; color: #7969d4; font-size: 39px; transform: rotate(8deg); }
-.admin-overview { display: grid; grid-template-columns: repeat(3,1fr); gap: 11px; margin: 15px 0; }.admin-overview article { min-height: 82px; padding: 14px 17px; display: flex; flex-direction: column; justify-content: space-between; border: 1px solid #e9e7e3; border-radius: 13px; background: #fff; }.admin-overview span { color: #9894a1; font-size: 8px; font-weight: 800; letter-spacing: .09em; }.admin-overview strong { color: #403b5e; font: 700 27px/1 var(--display); letter-spacing: -.05em; }
-.admin-tabs { display: flex; gap: 4px; margin: 18px 0 14px; border-bottom: 1px solid #e8e6e2; }.admin-tabs button { padding: 10px 14px; border: 0; border-bottom: 2px solid transparent; background: none; color: #898593; font-size: 10px; font-weight: 800; }.admin-tabs button span { margin-left: 4px; color: #aaa6b2; font-size: 9px; }.admin-tabs button.selected { border-color: #7060d9; color: #5e4ec3; }
-.admin-workspace { display: grid; grid-template-columns: minmax(275px,.87fr) minmax(0,1.13fr); gap: 13px; align-items: start; }.question-editor,.admin-users-panel { padding: 20px; border: 1px solid #e9e7e3; border-radius: 15px; background: #fff; }.editor-heading { display: flex; align-items: start; justify-content: space-between; gap: 10px; }.editor-heading h2,.admin-users-head h2 { margin: 6px 0 0; color: #343247; font: 700 19px var(--display); letter-spacing: -.04em; }.editor-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 11px; margin: 16px 0; }.editor-grid label,.admin-user-row label { display: grid; gap: 6px; color: #777587; font-size: 8px; font-weight: 800; letter-spacing: .06em; }.editor-grid input,.editor-grid select,.editor-grid textarea,.admin-user-row select { width: 100%; min-height: 37px; padding: 8px 10px; border: 1px solid #e4e2e8; border-radius: 8px; background: #fdfdfc; color: #333146; font-size: 11px; letter-spacing: 0; }.editor-grid textarea { min-height: 63px; resize: vertical; }.editor-grid .editor-wide { grid-column: 1 / -1; }.editor-grid .editor-active { display: flex; flex-direction: row; align-items: center; gap: 8px; }.editor-grid .editor-active input { width: 15px; min-height: 15px; }.question-editor > .button { min-height: 40px; font-size: 10px; }
-.admin-question-list { display: grid; gap: 8px; max-height: 685px; overflow: auto; padding-right: 3px; }.question-list-title { display: flex; align-items: center; justify-content: space-between; padding: 3px 2px 5px; }.question-list-title > span { color: #9e9aa7; font-size: 9px; }.admin-question { padding: 12px 13px; border: 1px solid #e9e7e3; border-radius: 11px; background: #fff; }.admin-question.inactive { opacity: .6; }.question-card-top { display: flex; align-items: center; gap: 8px; }.question-active { color: #9995a2; font-size: 8px; font-weight: 700; }.admin-question p { margin: 8px 0 4px; color: #37364a; font-size: 12px; font-weight: 800; }.admin-question small { display: block; color: #96929e; font-size: 8px; line-height: 1.5; }.admin-row-actions { display: flex; justify-content: flex-end; gap: 10px; margin-top: 8px; }.admin-text-button { padding: 4px; border: 0; background: none; color: #6554ca; font-size: 9px; font-weight: 800; }.admin-text-button.danger { color: #c26156; }
-.admin-users-panel { padding: 20px 22px; }.admin-users-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 15px; margin-bottom: 12px; }.admin-users-head p { color: #9894a1; font-size: 9px; }.admin-user-row { min-height: 65px; padding: 10px 0; display: grid; grid-template-columns: 35px minmax(160px,1fr) 120px 125px; gap: 12px; align-items: center; border-top: 1px solid #efeeeb; }.admin-person-avatar { width: 32px; height: 32px; display: grid; place-items: center; border-radius: 11px; background: #eeeaff; color: #6858ca; font: 700 12px var(--display); }.admin-person-info { display: grid; gap: 4px; }.admin-person-info strong { color: #39374b; font-size: 10px; }.admin-person-info strong i { margin-left: 6px; color: #8d84b7; font-size: 8px; font-style: normal; }.admin-person-info span { color: #9592a0; font-size: 8px; }.admin-user-row select { min-height: 34px; padding: 6px 8px; }.admin-user-row select:disabled { opacity: .6; }
-@media (max-width: 780px) { .admin-workspace { grid-template-columns: 1fr; }.admin-question-list { max-height: none; }.admin-heading-mark { width: 55px; height: 55px; font-size: 31px; } }
-@media (max-width: 560px) { .admin-page { padding-top: 18px; }.admin-heading-mark { display: none; }.admin-overview { gap: 7px; }.admin-overview article { min-height: 70px; padding: 11px; }.admin-overview span { font-size: 7px; }.admin-overview strong { font-size: 23px; }.question-editor,.admin-users-panel { padding: 16px 13px; }.editor-grid { grid-template-columns: 1fr; }.editor-grid .editor-wide { grid-column: auto; }.admin-users-head { align-items: flex-start; flex-direction: column; gap: 4px; }.admin-user-row { grid-template-columns: 31px 1fr 1fr; gap: 7px; }.admin-person-avatar { grid-row: 1; }.admin-person-info { grid-column: 2 / -1; }.admin-user-row label:first-of-type { grid-column: 2; }.admin-user-row label:last-of-type { grid-column: 3; } }
+.admin-page {
+  padding: 28px 0 42px;
+}
+.admin-heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  padding: 2px 0 19px;
+  border-bottom: 1px solid #e9e7e3;
+}
+.admin-heading .auth-back {
+  display: block;
+  margin: 0 0 22px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: #756ca0;
+  font-size: 10px;
+  font-weight: 800;
+}
+.admin-heading h1 {
+  margin: 10px 0 5px;
+  color: #2d2b42;
+  font: 700 clamp(33px, 4vw, 45px)/1.04 var(--display);
+  letter-spacing: -0.065em;
+}
+.admin-heading p {
+  margin: 0;
+  color: #8e8b98;
+  font-size: 10px;
+}
+.admin-heading-mark {
+  width: 70px;
+  height: 70px;
+  display: grid;
+  place-items: center;
+  border-radius: 22px;
+  background: #eeeaff;
+  color: #7969d4;
+  font-size: 39px;
+  transform: rotate(8deg);
+}
+.admin-overview {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 11px;
+  margin: 15px 0;
+}
+.admin-overview article {
+  min-height: 82px;
+  padding: 14px 17px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border: 1px solid #e9e7e3;
+  border-radius: 13px;
+  background: #fff;
+}
+.admin-overview span {
+  color: #9894a1;
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: 0.09em;
+}
+.admin-overview strong {
+  color: #403b5e;
+  font: 700 27px/1 var(--display);
+  letter-spacing: -0.05em;
+}
+.admin-tabs {
+  display: flex;
+  gap: 4px;
+  margin: 18px 0 14px;
+  border-bottom: 1px solid #e8e6e2;
+}
+.admin-tabs button {
+  padding: 10px 14px;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  background: none;
+  color: #898593;
+  font-size: 10px;
+  font-weight: 800;
+}
+.admin-tabs button span {
+  margin-left: 4px;
+  color: #aaa6b2;
+  font-size: 9px;
+}
+.admin-tabs button.selected {
+  border-color: #7060d9;
+  color: #5e4ec3;
+}
+.admin-workspace {
+  display: grid;
+  grid-template-columns: minmax(275px, 0.87fr) minmax(0, 1.13fr);
+  gap: 13px;
+  align-items: start;
+}
+.question-editor,
+.admin-users-panel {
+  padding: 20px;
+  border: 1px solid #e9e7e3;
+  border-radius: 15px;
+  background: #fff;
+}
+.editor-heading {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: 10px;
+}
+.editor-heading h2,
+.admin-users-head h2 {
+  margin: 6px 0 0;
+  color: #343247;
+  font: 700 19px var(--display);
+  letter-spacing: -0.04em;
+}
+.editor-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 11px;
+  margin: 16px 0;
+}
+.editor-grid label,
+.admin-user-row label {
+  display: grid;
+  gap: 6px;
+  color: #777587;
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+}
+.editor-grid input,
+.editor-grid select,
+.editor-grid textarea,
+.admin-user-row select {
+  width: 100%;
+  min-height: 37px;
+  padding: 8px 10px;
+  border: 1px solid #e4e2e8;
+  border-radius: 8px;
+  background: #fdfdfc;
+  color: #333146;
+  font-size: 11px;
+  letter-spacing: 0;
+}
+.editor-grid textarea {
+  min-height: 63px;
+  resize: vertical;
+}
+.editor-grid .editor-wide {
+  grid-column: 1 / -1;
+}
+.editor-grid .editor-active {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+}
+.editor-grid .editor-active input {
+  width: 15px;
+  min-height: 15px;
+}
+.question-editor > .button {
+  min-height: 40px;
+  font-size: 10px;
+}
+.admin-question-list {
+  display: grid;
+  gap: 8px;
+  max-height: 685px;
+  overflow: auto;
+  padding-right: 3px;
+}
+.question-list-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 3px 2px 5px;
+}
+.question-list-title > span {
+  color: #9e9aa7;
+  font-size: 9px;
+}
+.admin-question {
+  padding: 12px 13px;
+  border: 1px solid #e9e7e3;
+  border-radius: 11px;
+  background: #fff;
+}
+.admin-question.inactive {
+  opacity: 0.6;
+}
+.question-card-top {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.question-active {
+  color: #9995a2;
+  font-size: 8px;
+  font-weight: 700;
+}
+.admin-question p {
+  margin: 8px 0 4px;
+  color: #37364a;
+  font-size: 12px;
+  font-weight: 800;
+}
+.admin-question small {
+  display: block;
+  color: #96929e;
+  font-size: 8px;
+  line-height: 1.5;
+}
+.admin-row-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 8px;
+}
+.admin-text-button {
+  padding: 4px;
+  border: 0;
+  background: none;
+  color: #6554ca;
+  font-size: 9px;
+  font-weight: 800;
+}
+.admin-text-button.danger {
+  color: #c26156;
+}
+.admin-users-panel {
+  padding: 20px 22px;
+}
+.admin-users-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 15px;
+  margin-bottom: 12px;
+}
+.admin-users-head p {
+  color: #9894a1;
+  font-size: 9px;
+}
+.admin-user-row {
+  min-height: 65px;
+  padding: 10px 0;
+  display: grid;
+  grid-template-columns: 35px minmax(160px, 1fr) 120px 125px;
+  gap: 12px;
+  align-items: center;
+  border-top: 1px solid #efeeeb;
+}
+.admin-person-avatar {
+  width: 32px;
+  height: 32px;
+  display: grid;
+  place-items: center;
+  border-radius: 11px;
+  background: #eeeaff;
+  color: #6858ca;
+  font: 700 12px var(--display);
+}
+.admin-person-info {
+  display: grid;
+  gap: 4px;
+}
+.admin-person-info strong {
+  color: #39374b;
+  font-size: 10px;
+}
+.admin-person-info strong i {
+  margin-left: 6px;
+  color: #8d84b7;
+  font-size: 8px;
+  font-style: normal;
+}
+.admin-person-info span {
+  color: #9592a0;
+  font-size: 8px;
+}
+.admin-user-row select {
+  min-height: 34px;
+  padding: 6px 8px;
+}
+.admin-user-row select:disabled {
+  opacity: 0.6;
+}
+@media (max-width: 780px) {
+  .admin-workspace {
+    grid-template-columns: 1fr;
+  }
+  .admin-question-list {
+    max-height: none;
+  }
+  .admin-heading-mark {
+    width: 55px;
+    height: 55px;
+    font-size: 31px;
+  }
+}
+@media (max-width: 560px) {
+  .admin-page {
+    padding-top: 18px;
+  }
+  .admin-heading-mark {
+    display: none;
+  }
+  .admin-overview {
+    gap: 7px;
+  }
+  .admin-overview article {
+    min-height: 70px;
+    padding: 11px;
+  }
+  .admin-overview span {
+    font-size: 7px;
+  }
+  .admin-overview strong {
+    font-size: 23px;
+  }
+  .question-editor,
+  .admin-users-panel {
+    padding: 16px 13px;
+  }
+  .editor-grid {
+    grid-template-columns: 1fr;
+  }
+  .editor-grid .editor-wide {
+    grid-column: auto;
+  }
+  .admin-users-head {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .admin-user-row {
+    grid-template-columns: 31px 1fr 1fr;
+    gap: 7px;
+  }
+  .admin-person-avatar {
+    grid-row: 1;
+  }
+  .admin-person-info {
+    grid-column: 2 / -1;
+  }
+  .admin-user-row label:first-of-type {
+    grid-column: 2;
+  }
+  .admin-user-row label:last-of-type {
+    grid-column: 3;
+  }
+}
